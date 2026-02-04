@@ -1,0 +1,52 @@
+Scenario:
+"""
+    Process a product return and refund request:
+    
+    Order ID: ORD-1234567890
+    Customer ID: CUST-12345
+    Return Reason: defective
+    Items to Return:
+    - SKU: PROD-001, Quantity: 1 (defective - screen not working)
+    
+    Required Steps:
+    1. Retrieve the existing order details by order ID
+    2. Validate the order status (check if it can be returned)
+    3. Check how many days have passed since delivery
+    4. Validate the return is within the 30-day return window
+    5. Evaluate the return reason:
+       - If "defective": Full refund, no restocking fee, prepaid return label
+       - If "changed_mind": Refund minus 15% restocking fee
+       - If "wrong_item": Full refund, our mistake
+    6. Calculate the refund amount:
+       - Original item cost
+       - Shipping refund (if defective)
+       - Restocking fee (if applicable)
+       - Tax refund
+    7. Validate refund doesn't exceed original payment
+    8. Process the refund to original payment method
+    9. Generate a prepaid return shipping label
+    10. Update inventory to reflect the return
+    11. Send refund confirmation email with:
+        - Refund amount and breakdown
+        - Return shipping label
+        - Expected refund arrival time
+    12. Update customer account with return history
+    
+    Important: Since this is a defective item, ensure the customer receives 
+    excellent service - full refund including shipping, prepaid return label, 
+    and expedited processing.
+"""
+
+Topics to learn:
+
+https://platform.openai.com/docs/api-reference/responses/create#responses_create-tool_choice
+https://platform.openai.com/docs/api-reference/responses/input-tokens#responses_input_tokens-parallel_tool_calls
+https://platform.openai.com/docs/api-reference/chat/create#chat_create-messages
+Chain of thoughts
+Few shot sampling
+Giving model time to think
+https://blog.langchain.com/
+https://www.anthropic.com/engineering
+Agent to Agent communication
+plan and execution
+
